@@ -19,6 +19,7 @@ class LearningController extends AbstractController
     {
         $this->requestStack = $requestStack;
     }
+
     /**
      * @Route("/show", name="showMyName")
      */
@@ -43,7 +44,7 @@ class LearningController extends AbstractController
             ->add('save', SubmitType::class, ['label' => 'Change name'])
             ->getForm();
 
-        $name = "Unknown";
+        $name = "";
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -71,8 +72,7 @@ class LearningController extends AbstractController
     {
         $session = $this->requestStack->getSession();
 
-        if ($session->get('name') === "Unknown"){
-
+        if (!$session->has('name')){
             $response = $this->forward('App\Controller\LearningController::changeMyName', [
             ]);
 
@@ -82,7 +82,7 @@ class LearningController extends AbstractController
         return $this->render('learning/aboutme.html.twig', [
             'controller_name' => 'LearningController',
             'name' => $session->get('name'),
-            'date'=> date("Y/m/d"),
+            'date' => date("Y/m/d"),
         ]);
 
 

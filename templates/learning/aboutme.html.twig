@@ -14,8 +14,6 @@
         <li class="nav-item">
             <div>CHINA/JAPAN: {{ date|format_date(pattern="Y/M/d") }}</div>
         </li>
-
-
 {% endblock %}
 
 {% block body %}
@@ -142,7 +140,7 @@
                 </div>
                 <br>
                 <br>
-                <a href="{{ path('showMyName') }}">Homepage</a>
+                <p>{{ quote() | nl2br }}</p>
             </div>
 
 
